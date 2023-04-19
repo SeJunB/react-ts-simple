@@ -77,7 +77,7 @@ function doWork() {
         templatePackageJson.description = "";
         writeFileSync(
           templatePackageJsonPath,
-          JSON.stringify(templatePackageJson)
+          JSON.stringify(templatePackageJson, null, 2)
         );
         console.log(`🔥Successfully created simple React app in ${root}.🔥`);
         exit(0);
