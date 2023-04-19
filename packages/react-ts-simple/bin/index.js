@@ -53,6 +53,25 @@ function copyFromTemplate() {
   );
 }
 
+function createPackageJsonFromTemplate(root, copy) {
+  const pathToPackageJson = path.resolve(root, "package.json");
+  let templatePackageJson = JSON.parse(readFileSync(pathToPackageJson));
+
+  let newPackageJson = {
+    name: path.basename(root),
+    description: "",
+    private: "true",
+  };
+
+  for (const i in copy) {
+    if (copy[i] in templatePackageJson) {
+      newPackageJson[copy[i]] = templatePackageJson[copy[i]];
+    }
+  }
+
+  writeFileSync(pathToPackageJson, JSON.stringify(newPackageJson, null, 2));
+}
+
 function doWork() {
   rl.question("Please enter a folder name: ", (folderName) => {
     mkdir(folderName)
@@ -68,17 +87,12 @@ function doWork() {
           die(CANNOT_COPY_FROM_TEMPLATE);
         }
 
-        const templatePackageJsonPath = path.resolve(root, "package.json");
-        // name and description in the template package.json needs to be replaced, since by default it contains the package name and description.
-        let templatePackageJson = JSON.parse(
-          readFileSync(templatePackageJsonPath)
-        );
-        templatePackageJson.name = folderName;
-        templatePackageJson.description = "";
-        writeFileSync(
-          templatePackageJsonPath,
-          JSON.stringify(templatePackageJson, null, 2)
-        );
+        createPackageJsonFromTemplate(root, [
+          "scripts",
+          "devDependencies",
+          "dependencies",
+        ]);
+
         console.log(`🔥Successfully created simple React app in ${root}.🔥`);
         exit(0);
       })
