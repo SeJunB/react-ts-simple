@@ -1,0 +1,13 @@
+{
+  "name": "react-ts-simple",
+  "version": "1.0.0",
+  "description": "Script for creating a React Application with minimal markups.",
+  "type": "module",
+  "bin": {
+    "react-ts-simple": "bin/index.js"
+  },
+  "keywords": [],
+  "author": "SeJun Bae",
+  "license": "ISC"
+
+}
