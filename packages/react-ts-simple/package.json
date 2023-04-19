@@ -1,12 +1,25 @@
 {
   "name": "react-ts-simple",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Script for creating a React Application with minimal markups.",
   "type": "module",
   "bin": {
     "create": "bin/index.js"
   },
-  "keywords": [],
+  "keywords": [
+    "react"
+  ],
+  "engines": {
+    "node": ">=14"
+  },
+  "bugs": {
+    "url":"https://github.com/SeJunB/react-ts-simple/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SeJunB/react-ts-simple.git",
+    "directory": "packages/react-ts-simple"
+  },
   "author": "SeJun Bae",
   "license": "ISC"
 
