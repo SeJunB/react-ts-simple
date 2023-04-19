@@ -53,15 +53,7 @@ function copyFromTemplate() {
   );
 }
 
-function updateTemplatePackageJson(path) {
-  // name and description in the template package.json needs to be replaced, since by default it contains the package name and description.
-  let templatePackageJson = JSON.parse(readFileSync(path));
-  templatePackageJson.name = folderName;
-  templatePackageJson.description = "";
-  writeFileSync(path, JSON.stringify(templatePackageJson));
-}
-
-function init() {
+function doWork() {
   rl.question("Please enter a folder name: ", (folderName) => {
     mkdir(folderName)
       .then(() => {
@@ -76,7 +68,17 @@ function init() {
           die(CANNOT_COPY_FROM_TEMPLATE);
         }
 
-        updateTemplatePackageJson(path.resolve(root, "package.json"));
+        const templatePackageJsonPath = path.resolve(root, "package.json");
+        // name and description in the template package.json needs to be replaced, since by default it contains the package name and description.
+        let templatePackageJson = JSON.parse(
+          readFileSync(templatePackageJsonPath)
+        );
+        templatePackageJson.name = folderName;
+        templatePackageJson.description = "";
+        writeFileSync(
+          templatePackageJsonPath,
+          JSON.stringify(templatePackageJson)
+        );
         console.log(`🔥Successfully created simple React app in ${root}.🔥`);
         exit(0);
       })
@@ -86,4 +88,4 @@ function init() {
   });
 }
 
-init();
+doWork();
