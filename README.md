@@ -8,7 +8,7 @@ I created this npm package, because I got tired of deleting all the default file
 ## Usage
 To use this npm package, execute the command
 ```
-npm react-ts-simple create
+npx react-ts-simple create
 ```
 
 ## Contributions
