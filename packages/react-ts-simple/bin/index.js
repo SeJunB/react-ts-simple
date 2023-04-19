@@ -77,7 +77,7 @@ function init() {
         }
 
         updateTemplatePackageJson(path.resolve(root, "package.json"));
-        console.log("DONEEEEEEEEEE!!!!!!!!");
+        console.log(`🔥Successfully created simple React app in ${root}.🔥`);
         exit(0);
       })
       .catch((e) => {
